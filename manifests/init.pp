@@ -82,13 +82,11 @@ class hosts (
     $my_localhost6_aliases = undef
   }
 
-  $my_localhost_aliases_type = type_of($my_localhost_aliases)
-  if $my_localhost_aliases_type != String and $my_localhost_aliases_type != Array {
+  if !is_string($my_localhost_aliases) and !is_array($my_localhost_aliases) {
     fail("hosts::localhost_aliases must be a string or an array. Detected type is <${my_localhost_aliases_type}>.")
   }
 
-  $my_localhost6_aliases_type = type_of($my_localhost6_aliases)
-  if $my_localhost6_aliases_type != String and $my_localhost6_aliases_type != Array {
+  if !is_string($my_localhost6_aliases) and !is_array($my_localhost6_aliases) {
     fail("hosts::localhost6_aliases must be a string or an array. Detected type is <${my_localhost6_aliases_type}>.")
   }
 
