@@ -21,22 +21,46 @@ class hosts (
 
 
   # Convert string to boolean if necessary
-  $collect_all_real = any2bool($collect_all)
+  if is_string($collect_all) {
+    $collect_all_real = str2bool($collect_all)
+  } else {
+    $collect_all_real = $collect_all
+  }
 
   # Convert string to boolean if necessary
-  $ipv4_localhost_enabled = any2bool($enable_ipv4_localhost)
+  if is_string($enable_ipv4_localhost) {
+    $ipv4_localhost_enabled = str2bool($enable_ipv4_localhost)
+  } else {
+    $ipv4_localhost_enabled = $enable_ipv4_localhost
+  }
 
   # Convert string to boolean if necessary
-  $ipv6_localhost_enabled = any2bool($enable_ipv6_localhost)
+  if is_string($enable_ipv6_localhost) {
+    $ipv6_localhost_enabled = str2bool($enable_ipv6_localhost)
+  } else {
+    $ipv6_localhost_enabled = $enable_ipv6_localhost
+  }
 
   # Convert string to boolean if necessary
-  $fqdn_entry_enabled = any2bool($enable_fqdn_entry)
+  if is_string($enable_fqdn_entry) {
+    $fqdn_entry_enabled = str2bool($enable_fqdn_entry)
+  } else {
+    $fqdn_entry_enabled = $enable_fqdn_entry
+  }
 
   # Convert string to boolean if necessary
-  $use_fqdn_real = any2bool($use_fqdn)
+  if is_string($use_fqdn) {
+    $use_fqdn_real = str2bool($use_fqdn)
+  } else {
+    $use_fqdn_real = $use_fqdn
+  }
 
   # Convert string to boolean if necessary
-  $purge_hosts_enabled = any2bool($purge_hosts)
+  if is_string($purge_hosts) {
+    $purge_hosts_enabled = str2bool($purge_hosts)
+  } else {
+    $purge_hosts_enabled = $purge_hosts
+  }
 
   if $ipv4_localhost_enabled == true {
     $localhost_ensure     = 'present'
