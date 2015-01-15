@@ -20,21 +20,11 @@ class hosts (
 ) {
 
 
-  # validate type and convert string to boolean if necessary
-  $collect_all_type = type($collect_all)
-  if $collect_all_type == 'string' {
-    $collect_all_real = str2bool($collect_all)
-  } else {
-    $collect_all_real = $collect_all
-  }
+  # Convert string to boolean if necessary
+  $collect_all_real = any2bool($collect_all)
 
-  # validate type and convert string to boolean if necessary
-  $enable_ipv4_localhost_type = type_of($enable_ipv4_localhost)
-  if $enable_ipv4_localhost_type == String {
-    $ipv4_localhost_enabled = str2bool($enable_ipv4_localhost)
-  } else {
-    $ipv4_localhost_enabled = $enable_ipv4_localhost
-  }
+  # Convert string to boolean if necessary
+  $ipv4_localhost_enabled = any2bool($enable_ipv4_localhost)
 
   # Convert string to boolean if necessary
   $ipv6_localhost_enabled = any2bool($enable_ipv6_localhost)
@@ -73,7 +63,7 @@ class hosts (
     fail("hosts::localhost_aliases must be a string or an array. Detected type is <${my_localhost_aliases_type}>.")
   }
 
-  $my_localhost6_aliases_type = type($my_localhost6_aliases)
+  $my_localhost6_aliases_type = type_of($my_localhost6_aliases)
   if $my_localhost6_aliases_type != String and $my_localhost6_aliases_type != Array {
     fail("hosts::localhost6_aliases must be a string or an array. Detected type is <${my_localhost6_aliases_type}>.")
   }
